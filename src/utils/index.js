@@ -189,63 +189,6 @@ const once = function(el, event, fn) {
   on(el, event, listener)
 }
 
-// /* istanbul ignore next */
-// export function hasClass(el, cls) {
-//   if (!el || !cls) return false;
-//   if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.');
-//   if (el.classList) {
-//     return el.classList.contains(cls);
-//   } else {
-//     return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
-//   }
-// };
-
-// /* istanbul ignore next */
-// export function addClass(el, cls) {
-//   if (!el) return;
-//   var curClass = el.className;
-//   var classes = (cls || '').split(' ');
-
-//   for (var i = 0, j = classes.length; i < j; i++) {
-//     var clsName = classes[i];
-//     if (!clsName) continue;
-
-//     if (el.classList) {
-//       el.classList.add(clsName);
-//     } else {
-//       if (!hasClass(el, clsName)) {
-//         curClass += ' ' + clsName;
-//       }
-//     }
-//   }
-//   if (!el.classList) {
-//     el.className = curClass;
-//   }
-// };
-
-/* istanbul ignore next */
-// export function removeClass(el, cls) {
-//   if (!el || !cls) return;
-//   var classes = cls.split(' ');
-//   var curClass = ' ' + el.className + ' ';
-
-//   for (var i = 0, j = classes.length; i < j; i++) {
-//     var clsName = classes[i];
-//     if (!clsName) continue;
-
-//     if (el.classList) {
-//       el.classList.remove(clsName);
-//     } else {
-//       if (hasClass(el, clsName)) {
-//         curClass = curClass.replace(' ' + clsName + ' ', ' ');
-//       }
-//     }
-//   }
-//   if (!el.classList) {
-//     el.className = trim(curClass);
-//   }
-// };
-
 const hasClass = function(elem, cls) {
   cls = cls || ""
   if (cls.replace(/\s/g, "").length == 0) return false
@@ -407,62 +350,6 @@ const themes = {
     "active": "#596801"
   },
 }
-//element默认主题
-const eleTheme = {
-  "main": "#409EFF",
-  "active": "#66b1ff"
-}
-let oldCluster = eleTheme
-let newCluster = null
-//后台返回的css内容
-let chalk = null
-//通过URL获取css样式内容
-const getCSSString = function(callback) {
-  let url = document.getElementById('element-link').href
-  const xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      chalk = xhr.responseText.replace(/@font-face{[^}]+}/, '')
-      callback()
-    }
-  }
-  xhr.open('GET', url)
-  xhr.send()
-}
-
-
-// 更新css内容
-const updateStyle = function() {
-  let newStyle = chalk
-  for (const key in oldCluster) {
-    if (oldCluster.hasOwnProperty(key) && newCluster.hasOwnProperty(key)) {
-      newStyle = newStyle.replace(new RegExp(oldCluster[key], 'ig'), newCluster[key]) 
-    }
-  }
-  let styleTag = document.getElementById('element-style')
-  if (!styleTag) {
-    styleTag = document.createElement('style')
-    styleTag.setAttribute('id', 'element-style')
-    document.head.appendChild(styleTag)
-  }
-  styleTag.innerText = newStyle
-  chalk = newStyle
-  oldCluster = Object.assign({},newCluster)
-}
-
-//改变element主题
-const changeEle = function(theme) {
-  newCluster = themes[theme]
-  if (!chalk) {
-    getCSSString(updateStyle)
-  } else {
-    updateStyle()
-  }
-}
-//加载默认主题element颜色
-// if(!getStore("theme")){
-//   changeEle("default")
-// }
 
 //改变主题
 const changeTheme = function(theme) {
@@ -472,7 +359,6 @@ const changeTheme = function(theme) {
   // themeURL 打包后，通过build/themeExtract加入到HTML中的全局变量
   loadFile(themeURL["themes-"+theme],"themeCss").then(()=>{
     setStore("theme",theme)
-    changeEle(theme)
     Vue.$bus.$emit("changeTheme",theme)
   })
 }

@@ -1,6 +1,6 @@
 <template>
-<div id="app" class="full">
-    <router-view class="full"></router-view>
+<div id="app">
+    <router-view></router-view>
 </div>
 </template>
 
@@ -10,7 +10,6 @@ export default {
   components: {},
   data() {
     return {
-      transitionName: "slide-left"
     }
   },
   created() {
@@ -21,10 +20,5 @@ export default {
 
 <style lang="scss">
 @import "./style/style.scss";
-html,
-body,
-.full {
-  height: 100%;
-  width: 100%;
-}
+
 </style>
