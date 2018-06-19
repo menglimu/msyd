@@ -6,7 +6,8 @@ import Vue from "vue"
 import App from "./App"
 import router from "./router"
 
-import https from "@/api/" //所有的请求地址管理
+//加载权限、主题方法
+import {changeTheme,getStore} from "@/utils"
 
 //使用mock，打包，联调注释
 require("@/api/mock")
@@ -15,8 +16,11 @@ require("@/api/mock")
 Vue.$bus = Vue.prototype.$bus = new Vue()
 //使用rem
 require("@/utils/rem")
-//加载权限、主题方法
-import {changeTheme,getStore} from "@/utils"
+//旋转转圈，消息提示，全局组件
+require('@/components/global/loadMask')
+require('@/components/global/messageBox')
+//网络请求
+require("@/api/") 
 
 //添加路由拦截器
 router.beforeEach((to, from, next) => {

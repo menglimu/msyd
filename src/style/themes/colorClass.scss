@@ -8,6 +8,7 @@
 }
 .bg{
     background-color: $main;
+    color: $text;
     &.active{
         background-color: $active;
     }

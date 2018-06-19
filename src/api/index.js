@@ -9,8 +9,8 @@ import {getStore,getSession} from "@/utils"
 let http = axios.create({
   baseURL: process.env.API_ROOT+"/",
   headers: {
-    // "Content-Type": "application/x-www-form-urlencoded; charset=utf-8", //form格式
-    'Content-Type':'application/json',                                     //json格式
+    "Content-Type": "application/x-www-form-urlencoded; charset=utf-8", //form格式
+    // 'Content-Type':'application/json',                                     //json格式
   },
   withCredentials: false,
   timeout: 10000,
@@ -23,14 +23,14 @@ http.interceptors.request.use((config) => {
    * 此处直接在 query (GET方法) 或者 form-data (POST PUT DELETE 等方法) 注入session 参数
    * ！实际情况请根据前后端的API规范进行定义
    */
-  // Vue.laodMask.show()
+  Vue.laodMask.show()
   // console.log(config);
   // config.headers.common['x-access-token'] = getSession('openId')
   // config.headers.common['channel'] = 'wechat'
   
   return config
 }, (error) => {
-  // Vue.laodMask.hide()
+  Vue.laodMask.hide()
   console.log(error)
   return Promise.reject(error)
 })
@@ -54,12 +54,12 @@ http.interceptors.response.use(res => {
   //错误处理
   if (error.response) {
     if (error.response.status == 401) {
-      // Vue.messageBox.alert("您无权进行该操作")
+      Vue.messageBox.alert("您无权进行该操作")
     }else{
-      // Vue.messageBox.alert("网络超时")
+      Vue.messageBox.alert("网络超时")
     }
   } else {
-    // Vue.messageBox.alert("网络超时")
+    Vue.messageBox.alert("网络超时")
   }
   return Promise.reject(error)
 })
@@ -76,8 +76,8 @@ let getParms = function (params) {
     // sourceId: mscommon.getSession('sourceId') || "",
   },params)
 
-  // return Qs.stringify(params)  //form格式
-  return params                   //json格式
+  return Qs.stringify(params)  //form格式
+  // return params                   //json格式
 }
 
 const API = {

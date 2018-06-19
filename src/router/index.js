@@ -6,9 +6,8 @@ order by qinhaozhi Data:20170915
 */
 import Vue from 'vue'
 import Router from 'vue-router'
-import router from '@common/router'//根据noKeepAlive判断是否缓存
 
-const notFound = () => import('@/page/notFound/notFound') // 404页面
+const notFound = () => import('@/page/notFound') // 404页面
 
 
 Vue.use(Router)
@@ -16,23 +15,21 @@ Vue.use(Router)
 let routerInfo = [
 
   {
+    path: "/",
+    component: notFound,
+    meta: {
+      title: "民生易贷",
+    },
   },
   {
     path: '*',
     meta: {
-      title: "",
-      noKeepAlive: true,
-      noShowMenu: true,
-      hasPower: true,
+      title: "页面丢失啦~",
     },
     component: notFound
   },
   
 ]
-// setTimeout(()=>{
-//   staticRouter.addRoutes(routerInfo)
-// },5000)
-// export {routerInfo}
 export default new Router({
   mode: 'history',
   base: process.env.URL_BASE,

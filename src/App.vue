@@ -13,6 +13,9 @@ export default {
     }
   },
   created() {
+    this.messageBox.confirm(123,{
+      title: "弹窗头部名称"
+    })
   },
   methods: {}
 }
