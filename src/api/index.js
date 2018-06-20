@@ -24,7 +24,7 @@ http.interceptors.request.use((config) => {
    * ！实际情况请根据前后端的API规范进行定义
    */
   Vue.laodMask.show()
-  // console.log(config);
+  console.log(config)
   // config.headers.common['x-access-token'] = getSession('openId')
   // config.headers.common['channel'] = 'wechat'
   
@@ -44,13 +44,11 @@ http.interceptors.response.use(res => {
    * 通过 error_message 提取后端提供的错误信息
    * ！实际情况请根据前后端的API规范进行定义
    */
-  // Vue.laodMask.hide()
-  
-  let data = res.data
+  Vue.laodMask.hide()
 
-  return data
+  return res.data
 }, error => {
-  // Vue.laodMask.hide()
+  Vue.laodMask.hide()
   //错误处理
   if (error.response) {
     if (error.response.status == 401) {
@@ -76,8 +74,8 @@ let getParms = function (params) {
     // sourceId: mscommon.getSession('sourceId') || "",
   },params)
 
-  return Qs.stringify(params)  //form格式
-  // return params                   //json格式
+  // return Qs.stringify(params)  //form格式
+  return params                   
 }
 
 const API = {

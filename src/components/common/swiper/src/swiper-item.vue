@@ -6,9 +6,9 @@
 
 <script>
     export default {
-        name: 'swiper-item',
-        mounted() {
-            this.$parent.init();
-        }
+      name: 'swiper-item',
+      mounted() {
+        this.$parent.init()
+      }
     }
 </script>

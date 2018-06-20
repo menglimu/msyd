@@ -8,7 +8,8 @@
 .lm-radio-group {
   border-bottom: 0.01rem solid #e7e7e7;
   .lm-radio-row {
-    @include inline($class: '.text') height: 0.8rem;
+    @include inline($class: '.text');
+    height: 0.8rem;
     margin: 0 0.3rem;
     border-bottom: 0.01rem solid #e7e7e7;
     img {
@@ -85,7 +86,7 @@ export default {
     },
     changeValue(val, index) {
       if (this.radio[index].disabled) {
-        return;
+        return
       }
 
       if (!this.multi) {
@@ -94,7 +95,7 @@ export default {
           val = true
         }
         this.radio[index].checked = val
-        this.$emit('input', val && (this.radio[index].value || index) || false);
+        this.$emit('input', val && (this.radio[index].value || index) || false)
       } else {
         if (this.must && this.value.length == 1) {
           if (this.radio[index].checked && !val) {
@@ -106,13 +107,13 @@ export default {
         for (var i = 0; i < this.radio.length; i++) {
           this.radio[i].checked && this.value.push(this.radio[i].value || i)
         }
-        this.$emit('input', this.value);
+        this.$emit('input', this.value)
       }
     },
     //循环设置单选为false
     checkFalse() {
       for (var i = 0; i < this.radio.length; i++) {
-        this.radio[i].checked = false;
+        this.radio[i].checked = false
       }
     }
   },

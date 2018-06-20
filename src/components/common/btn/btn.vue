@@ -13,12 +13,7 @@ disabled：是否禁止点击，默认false,-->
     border: none;
     border-radius: 4px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    /*默认尺寸*/
-    margin: 0 auto;
-    &.lm-btn-block {
-      display: block;
-      height: 0.75rem;
-      background-image: linear-gradient(90deg, 
+      background: linear-gradient(90deg, 
         #4989e7 0%, 
         #4985f4 100%), 
       linear-gradient(
@@ -27,9 +22,15 @@ disabled：是否禁止点击，默认false,-->
       background-blend-mode: normal, 
         normal;
       border-radius: 0.1rem;
+    /*默认尺寸*/
+    margin: 0 auto;
+    &.lm-btn-block {
+      display: block;
+      height: 0.75rem;
       color: #fff;
       font-size: 0.26rem;
       /* line-height: 0.75rem; */
+      width: 100%;
     }
     /*禁止点击*/
     &.disabled {

@@ -1,14 +1,15 @@
 <template>
   <div>
     首页
+    <mlbtn>按钮</mlbtn>
   </div>
 </template>
 
 <script>
-//import component from "@/"
+import mlbtn from "@common/btn"
 export default {
   name: "index",
-  components: {},
+  components: {mlbtn},
   props: {},
   data () {
     return {
@@ -16,7 +17,7 @@ export default {
   },
 
   created() {
-    this.$http.get("msg").then(res => {
+    this.$http.post("msg").then(res => {
       console.log(res)
     })
   },

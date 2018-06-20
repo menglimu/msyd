@@ -8,6 +8,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const notFound = () => import('@/page/notFound') // 404页面
+const index = () => import('@/page/main') // 404页面
 
 
 Vue.use(Router)
@@ -16,7 +17,7 @@ let routerInfo = [
 
   {
     path: "/",
-    component: notFound,
+    component: index,
     meta: {
       title: "民生易贷",
     },

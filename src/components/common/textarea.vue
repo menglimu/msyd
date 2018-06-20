@@ -11,52 +11,52 @@
 
 <script type="text/babel">
     export default {
-        name: 'yd-textarea',
-        data() {
-            return {
-                num: 0,
-                mlstr: ''
-            }
-        },
-        props: {
-            maxlength: {
-                validator(val) {
-                    if(!val) return true;
-                    return /^(([1-9]\d*)|0)$/.test(val);
-                }
-            },
-            placeholder: {
-                type: String
-            },
-            readonly: {
-                type: Boolean,
-                default: false
-            },
-            value: {
-                type: String
-            },
-            showCounter: {
-                type: Boolean,
-                default: true
-            },
-            change: {
-                type: Function
-            }
-        },
-        watch: {
-            mlstr(val) {
-                this.$emit('input', val);
-                typeof this.change == 'function' && this.change();
-                if (this.showCounter) this.num = val.length;
-            }
-        },
-        mounted() {
-            this.$nextTick(() => {
-                const v = this.value;
-                if (!v)return;
-                this.mlstr = v.length > this.maxlength ? v.substr(v, this.maxlength) : v;
-            });
+      name: 'yd-textarea',
+      data() {
+        return {
+          num: 0,
+          mlstr: ''
         }
+      },
+      props: {
+        maxlength: {
+          validator(val) {
+            if(!val) return true
+            return /^(([1-9]\d*)|0)$/.test(val)
+          }
+        },
+        placeholder: {
+          type: String
+        },
+        readonly: {
+          type: Boolean,
+          default: false
+        },
+        value: {
+          type: String
+        },
+        showCounter: {
+          type: Boolean,
+          default: true
+        },
+        change: {
+          type: Function
+        }
+      },
+      watch: {
+        mlstr(val) {
+          this.$emit('input', val)
+          typeof this.change == 'function' && this.change()
+          if (this.showCounter) this.num = val.length
+        }
+      },
+      mounted() {
+        this.$nextTick(() => {
+          const v = this.value
+          if (!v)return
+          this.mlstr = v.length > this.maxlength ? v.substr(v, this.maxlength) : v
+        })
+  }
     }
 </script>
 

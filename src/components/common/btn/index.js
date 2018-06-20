@@ -1,3 +1,1 @@
-import btn from './btn.vue';
-
-export default btn;
+export {default} from './btn.vue'
